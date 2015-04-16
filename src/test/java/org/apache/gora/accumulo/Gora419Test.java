@@ -1,5 +1,6 @@
 package org.apache.gora.accumulo;
 
+import org.apache.avro.util.Utf8;
 import org.apache.gora.accumulo.store.AccumuloStore;
 import org.apache.gora.persistency.Persistent;
 import org.apache.gora.store.DataStore;
@@ -41,7 +42,8 @@ public class Gora419Test {
         assertThat("batch id still stored", read.getBatchId(), is(notNullValue()));
         assertThat("batch id has correct value", read.getBatchId().toString(),
             is(OTHER_FIELD_VALUE));
-        assertThat("map value stored correctly", read.getHeaders().get(MAP_KEY).toString(),
+        assertThat("map value stored correctly",
+            read.getHeaders().get(new Utf8(MAP_KEY)).toString(),
             is(MAP_VALUE));
     }
 
